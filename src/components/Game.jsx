@@ -22,6 +22,7 @@ export default class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -49,6 +50,7 @@ export default class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const isDraw = !winner && current.squares.find((i) => i == null) === undefined;
 
     const sortMoves = <button onClick={() => this.setState({sortMovesAsc: !this.state.sortMovesAsc})}>
         {this.state.sortMovesAsc ? "Sort moves descending" : "Sort moves ascending"}
@@ -74,6 +76,8 @@ export default class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+    } else if (isDraw) {
+      status = "It's a Draw!";
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
