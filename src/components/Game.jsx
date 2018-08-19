@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from './Board';
-import calculateWinner from '../helpers/calculate-winner';
+import {calculateWinner, calculateWinningCombo} from '../helpers/calculate-winner';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -9,7 +9,8 @@ export default class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null),
         column: null,
-        row: null
+        row: null,
+        winningCombo: null
       }],
       stepNumber: 0,
       xIsNext: true,
@@ -29,7 +30,8 @@ export default class Game extends React.Component {
       history: history.concat([{
         squares: squares,
         column: (i % 3) + 1,
-        row: Math.floor(i/3) + 1
+        row: Math.floor(i/3) + 1,
+        winningCombo: calculateWinningCombo(squares)
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
@@ -81,6 +83,7 @@ export default class Game extends React.Component {
           <Board 
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
+            winningCombo={current.winningCombo}
           />
         </div>
         <div className="game-info">

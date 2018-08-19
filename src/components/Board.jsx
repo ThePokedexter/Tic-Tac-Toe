@@ -10,6 +10,7 @@ export default class Board extends React.Component {
         key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        highlight={this.props.winningCombo && this.props.winningCombo.includes(i)}
       />
     );
   }
