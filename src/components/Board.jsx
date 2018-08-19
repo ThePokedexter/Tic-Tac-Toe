@@ -1,10 +1,13 @@
 import React from 'react';
 import Square from './Square';
 
+const boardSize = 3;
+
 export default class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square 
+        key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -14,21 +17,11 @@ export default class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {Array(boardSize).fill(null).map((item, row) => 
+          <div key={row} className="board-row">
+            {Array(boardSize).fill(null).map((i, column) => this.renderSquare(row * boardSize + column))}
+          </div>
+        )}
       </div>
     );
   }
