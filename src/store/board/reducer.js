@@ -38,7 +38,15 @@ export default function reduce(state = initialState, action = {}) {
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext
       });
-      
+
+    case types.BOARD_NEW_MOVE:
+      const step = action.step;
+
+      return state.merge({
+        stepNumber: step,
+        xIsNext: (step % 2) === 0
+      });
+
     default:
       return state;
   }
