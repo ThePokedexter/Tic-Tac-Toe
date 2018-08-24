@@ -1,0 +1,2 @@
+export const BOARD_GET_SQUARES = 'BOARD_GET_SQUARES';
+export const BOARD_SET_SQUARE = 'BOARD_SET_SQUARE';
