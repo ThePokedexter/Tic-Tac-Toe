@@ -2,7 +2,15 @@ import Immutable from 'seamless-immutable';
 import * as types from './actionTypes';
 
 const initialState = Immutable({
-  squares: Array(9).fill(null)
+  history: [{
+    squares: Array(9).fill(null),
+    column: null,
+    row: null,
+    winningCombo: null
+  }],
+  xIsNext: true,
+  stepNumber: 0,
+  sortMovesAsc: true
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -14,6 +22,7 @@ export default function reduce(state = initialState, action = {}) {
 
 // selectors
 
-export function getSquares(state) {
-  return state.board.squares;
+export function getCurrentBoard(state) {
+  let history = state.board.history;
+  return history[history.length - 1];
 }
