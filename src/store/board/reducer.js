@@ -10,7 +10,7 @@ const initialState = Immutable({
   }],
   xIsNext: true,
   stepNumber: 0,
-  sortMovesAsc: true
+  sortMovesAsc: true,
 });
 
 export default function reduce(state = initialState, action = {}) {

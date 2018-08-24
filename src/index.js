@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import Game from './components/Game';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import './index.css';
 
 import * as reducers from './store/reducers';
-const store = createStore(combineReducers(reducers), devToolsEnhancer());
+const store = createStore(combineReducers(reducers), composeWithDevTools(
+  applyMiddleware(thunk)
+));
 
 ReactDOM.render(
   <Provider store={store}>
