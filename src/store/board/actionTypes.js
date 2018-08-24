@@ -1,1 +1,1 @@
-export const BOARD_SET_SQUARE = 'BOARD_SET_SQUARE';
+export const BOARD_NEW_MOVE = 'BOARD_NEW_MOVE';
